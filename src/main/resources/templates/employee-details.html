@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de l'employé</title>
+    <link rel="stylesheet" type="text/css" href="/css/employee-details.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+</head>
+<body>
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="nav-item">
+            <a class="nav-link" href="/entreprise">A propos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/employees">Employés</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/add-employee">Ajouter</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Détails de l'employé</h1> <a th:href="@{/fiche/{id}/edit(id=${employee.id})}">Modifier</a>
+    <div class="employee-details">
+    <h2>Nom complet : <span th:text="${employee.firstName + ' ' + employee.lastName}"></span></h2>
+    <h3>Date de naissance : <span th:text="${employee.dateOfBirth}"></span></h3>
+    <h3>Sexe : <span th:text="${employee.sexe}"></span></h3>
+    <h3>Numéro matricule : <span th:text="${employee.numeroMatricule}"></span></h3>
+<!--    <h3>Téléphones : <span th:text="${employee.telephones}"></span></h3>-->
+    <h3>Téléphones : </h3>
+    <ul>
+        <li th:each="telephone : ${employee.telephones}" th:text="${telephone}"></li>
+    </ul>
+
+    <h3>Adresse : <span th:text="${employee.adresse}"></span></h3>
+    <h3>Email personnel : <span th:text="${employee.emailPersonnel}"></span></h3>
+    <h3>Email professionnel : <span th:text="${employee.emailProfessionnel}"></span></h3>
+    <h3>Numéro CIN : <span th:text="${employee.numeroCIN}"></span></h3>
+    <h3>Date de délivrance CIN : <span th:text="${employee.dateDelivranceCIN}"></span></h3>
+    <h3>Lieu de délivrance CIN : <span th:text="${employee.lieuDelivranceCIN}"></span></h3>
+    <h3>Fonction : <span th:text="${employee.fonction}"></span></h3>
+    <h3>Nombre d'enfants : <span th:text="${employee.nombreEnfants}"></span></h3>
+    <h3>Date d'embauche : <span th:text="${employee.dateEmbauche}"></span></h3>
+    <h3>Date de départ : <span th:text="${employee.dateDepart}"></span></h3>
+    <h3>Catégorie socio-professionnelle : <span th:text="${employee.categorieSocioProfessionnelle}"></span></h3>
+    <h3>Numéro CNAPS : <span th:text="${employee.CNAPS}"></span></h3>
+
+    <div>
+        <p>Photo :</p>
+        <div th:if="${employee.image != null}">
+            <img src="data:image/jpeg;base64," th:attrappend="src=${employee.image}" alt="Photo de l'employé">
+        </div>
+        <div th:unless="${employee.image != null}">
+            <p>Image vide</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer>
+    <!-- Incluez le fragment du footer ici -->
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>

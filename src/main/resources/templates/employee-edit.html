@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier les informations d'un employé</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+</head>
+<body  th:object="${employee}">
+<div th:if="${error}" class="error-message">
+    <p th:text="${error}"></p>
+</div>
+
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="nav-item">
+            <a class="nav-link" href="/entreprise">A propos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/employees">Employés</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/add-employee">Ajouter</a>
+        </li>
+    </ul>
+</nav>
+
+<h1>Modifier</h1>
+<form th:action="@{'/fiche/' + ${employee.id} + '/edit'}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" th:value="${employee.id}">
+    <div>
+        <label for="firstName">Prénom:</label>
+        <input type="text" id="firstName" name="firstName" th:value="${employee.firstName}" required>
+    </div>
+    <div>
+        <label for="lastName">Nom:</label>
+        <input type="text" id="lastName" name="lastName" th:value="${employee.lastName}" required>
+    </div>
+    <div>
+        <label for="dateOfBirth">Date de naissance:</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${employee.dateOfBirth}" required>
+    </div>
+    <div>
+        <label for="sexe">Sexe:</label>
+        <select id="sexe" name="sexe">
+            <option value="M" th:selected="${employee.sexe == 'M'}">Masculin</option>
+            <option value="F" th:selected="${employee.sexe == 'F'}">Féminin</option>
+            <option th:unless="${employee.sexe == 'M' or employee.sexe == 'F'}" selected disabled>Sélectionnez le sexe</option>
+        </select>
+        </select>
+    </div>
+    <div>
+        <label for="numeroMatricule">Numéro matricule:</label>
+        <input type="text" id="numeroMatricule" name="numeroMatricule" th:value="${employee.numeroMatricule}">
+    </div>
+<!--    <div>-->
+<!--        <label for="telephones">Téléphones:</label>-->
+<!--        <input type="text" id="telephones" name="telephones" th:value="${employee.telephones}">-->
+<!--    </div>-->
+    <div id="existingTelephones">
+        <label>Téléphones existants:</label>
+        <ul>
+            <li th:each="telephone : ${employee.telephones}">
+                <label>
+                    <input type="checkbox" name="telephonesToDelete" th:value="${telephone}">
+                    <span th:text="${telephone}"></span>
+                </label>
+            </li>
+        </ul>
+        <p>Sélectionnez les numéros de téléphone que vous souhaitez supprimer:</p>
+    </div>
+    <div>
+        <label for="newTelephones">Nouveau téléphones:</label>
+        <select id="countryCode" name="countryCode">
+            <option value="+261">+261 (Madagascar)</option>
+            <option value="+33">+33 (France)</option>
+            <option value="+1">+1 (United States)</option>
+            <option value="+86">+86 (China)</option>
+            <option value="+91">+91 (India)</option>
+            <option value="+62">+62 (Indonesia)</option>
+            <option value="+81">+81 (Japan)</option>
+            <option value="+92">+92 (Pakistan)</option>
+            <option value="+234">+234 (Nigeria)</option>
+            <option value="+880">+880 (Bangladesh)</option>
+            <option value="+55">+55 (Brazil)</option>
+            <option value="+7">+7 (Russia)</option>
+            <option value="+49">+49 (Germany)</option>
+            <option value="+44">+44 (United Kingdom)</option>
+            <option value="+82">+82 (South Korea)</option>
+            <option value="+20">+20 (Egypt)</option>
+            <option value="+62">+62 (Indonesia)</option>
+        </select>
+        <input id="newTelephones" name="newTelephones" placeholder="(10 chiffres)"></input>
+    </div>
+
+    <div>
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" name="adresse" th:value="${employee.adresse}">
+    </div>
+    <div>
+        <label for="emailPersonnel">Email personnel:</label>
+        <input type="email" id="emailPersonnel" name="emailPersonnel" th:value="${employee.emailPersonnel}">
+    </div>
+    <div>
+        <label for="emailProfessionnel">Email professionnel:</label>
+        <input type="email" id="emailProfessionnel" name="emailProfessionnel" th:value="${employee.emailProfessionnel}">
+    </div>
+    <div>
+        <label for="numeroCIN">Numéro CIN:</label>
+        <input type="text" id="numeroCIN" name="numeroCIN" th:value="${employee.numeroCIN}">
+    </div>
+    <div>
+        <label for="dateDelivranceCIN">Date de délivrance CIN:</label>
+        <input type="date" id="dateDelivranceCIN" name="dateDelivranceCIN" th:value="${employee.dateDelivranceCIN}">
+    </div>
+    <div>
+        <label for="lieuDelivranceCIN">Lieu de délivrance CIN:</label>
+        <input type="text" id="lieuDelivranceCIN" name="lieuDelivranceCIN" th:value="${employee.lieuDelivranceCIN}">
+    </div>
+    <div>
+        <label for="fonction">Fonction:</label>
+        <input type="text" id="fonction" name="fonction" th:value="${employee.fonction}">
+    </div>
+    <div>
+        <label for="nombreEnfants">Nombre d'enfants:</label>
+        <input type="number" id="nombreEnfants" name="nombreEnfants" th:value="${employee.nombreEnfants}">
+    </div>
+    <div>
+        <label for="dateEmbauche">Date d'embauche:</label>
+        <input type="date" id="dateEmbauche" name="dateEmbauche" th:value="${employee.dateEmbauche}">
+    </div>
+    <div>
+        <label for="dateDepart">Date de départ:</label>
+        <input type="date" id="dateDepart" name="dateDepart" th:value="${employee.dateDepart}">
+    </div>
+    <div>
+        <label for="categorieSocioProfessionnelle">Catégorie socio-professionnelle:</label>
+        <select id="categorieSocioProfessionnelle" name="categorieSocioProfessionnelle">
+            <option value="M1" th:selected="${employee.categorieSocioProfessionnelle == 'M1'}">M1</option>
+            <option value="M2" th:selected="${employee.categorieSocioProfessionnelle == 'M2'}">M2</option>
+            <option value="OS1" th:selected="${employee.categorieSocioProfessionnelle == 'OS1'}">OS1</option>
+            <option value="OS2" th:selected="${employee.categorieSocioProfessionnelle == 'OS2'}">OS2</option>
+            <option value="OS3" th:selected="${employee.categorieSocioProfessionnelle == 'OS3'}">OS3</option>
+            <option value="OP1A" th:selected="${employee.categorieSocioProfessionnelle == 'OP1A'}">OP1A</option>
+            <option value="OP1B" th:selected="${employee.categorieSocioProfessionnelle == 'OP1B'}">OP1B</option>
+            <option value="OP2A" th:selected="${employee.categorieSocioProfessionnelle == 'OP2A'}">OP2A</option>
+            <option value="OP2B" th:selected="${employee.categorieSocioProfessionnelle == 'OP2B'}">OP2B</option>
+            <option value="OP3" th:selected="${employee.categorieSocioProfessionnelle == 'OP3'}">OP3</option>
+        </select>
+    </div>
+    <div>
+        <label for="CNAPS">Numéro CNAPS:</label>
+        <input type="text" id="CNAPS" name="CNAPS" th:value="${employee.CNAPS}">
+    </div>
+    <div>
+        <label for="imageFile">Image:</label>
+        <input type="file" id="imageFile" name="imageFile">
+    </div>
+    <div>
+        <button type="submit">Modifier</button>
+    </div>
+</form>
+
+</body>
+</html>

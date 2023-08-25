@@ -1,0 +1,42 @@
+/* Mettre le fond du navbar en couleur sombre */
+.navbar {
+  background-color: green;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius:30px
+}
+
+/* Aligner les éléments du menu */
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Espacement entre les éléments du menu */
+.nav-item {
+  margin-right: 10px;
+}
+
+/* Styler les liens du menu */
+.nav-link {
+  text-decoration: none;
+  color: grey; /* Texte en blanc */
+  font-weight: bold;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+/* Styler les liens au survol de la souris */
+.nav-link:hover {
+  background-color: red; /* Couleur de fond au survol */
+  color: green; /* Texte en blanc */
+}
+
+/* Styler le lien de la page active (sélectionné) */
+.nav-link.current {
+  background-color: #4CAF50; /* Couleur de fond pour la page active */
+  color: #fff; /* Texte en blanc */
+}
+

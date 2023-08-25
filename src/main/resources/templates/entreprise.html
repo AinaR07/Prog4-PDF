@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Entreprise</title>
+    <link rel="stylesheet" type="text/css" href="/css/entreprise.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="nav-item">
+            <a class="nav-link" href="/entreprise">A propos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/employees">Employés</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/add-employee">Ajouter</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Informations sur l'entreprise</h1>
+
+    <div>
+        <h3>Logo :</h3>
+        <div th:if="${entreprise.logo != null}">
+            <img src="data:image/jpeg;base64," th:attrappend="src=${entreprise.logo}" alt="Logo de l'entreprise">
+        </div>
+        <div th:unless="${entreprise.logo != null}">
+            <p>Logo vide</p>
+        </div>
+    </div>
+    <h3>Nom : <span th:text="${entreprise.nom}"></span></h3>
+    <h3>Description : <span th:text="${entreprise.description}"></span></h3>
+    <h3>Slogan : <span th:text="${entreprise.slogan}"></span></h3>
+    <h3>Adresse : <span th:text="${entreprise.adresse}"></span></h3>
+    <h3>Email de contact : <span th:text="${entreprise.emailContact}"></span></h3>
+    <h3>Téléphones : </h3>
+    <ul>
+        <li th:each="telephone : ${entreprise.telephones}" th:text="${telephone}"></li>
+    </ul>
+    <h3>NIF : <span th:text="${entreprise.nif}"></span></h3>
+    <h3>Stat : <span th:text="${entreprise.stat}"></span></h3>
+    <h3>RCS : <span th:text="${entreprise.rcs}"></span></h3>
+
+
+
+    <a class="btn-edit" href="/entreprise/edit">Modifier les informations</a>
+</div>
+
+</body>
+</html>

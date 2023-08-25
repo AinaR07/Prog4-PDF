@@ -1,0 +1,86 @@
+/* Styles pour les deux templates */
+.container {
+    max-width: 800px; /* Augmente la largeur maximale */
+    margin: 0 auto;
+    padding: 30px; /* Augmente le padding */
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+body {
+    font-family: "Arial", sans-serif;
+}
+h1 {
+    color: #007bff;
+}
+
+/* Styles spécifiques pour entreprise.html */
+.btn-edit {
+    display: inline-block; /* Change en "inline-block" pour être à côté du texte */
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+/* Styles spécifiques pour entreprise-edit.html */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px; /* Ajuste le padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 12px 24px; /* Ajuste le padding */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Styles for the navbar-entreprise-fragment.html */
+.navbar-logo {
+    /* Ajoutez ici les styles que vous souhaitez pour le logo */
+    margin-right: 10px; /* Exemple : ajoute de l'espace entre le logo et le nom */
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Styles for images */
+img {
+    max-width: 100%;
+    height: auto; /* Utilisation de 'auto' pour maintenir le ratio d'aspect */
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 5px solid #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

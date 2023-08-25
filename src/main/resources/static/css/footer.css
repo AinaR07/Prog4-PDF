@@ -1,0 +1,46 @@
+/* Réinitialiser les marges et les paddings */
+/* Nouveau style CSS avec les modifications pour le footer */
+
+.footer-content {
+  margin: 0;
+  padding: 0;
+  background-color: #222; /* Couleur de fond sombre */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  position: fixed; /* Position fixe pour le placer en bas */
+  bottom: 0; /* Placer le footer en bas */
+  left: 0;
+  right: 0;
+  width: 100%; /* Largeur de 100% pour occuper toute la largeur de la page */
+  box-sizing: border-box; /* Inclure les bordures et les marges dans la largeur totale */
+}
+
+/* Styler le texte du nom de l'entreprise */
+.footer-content span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff; /* Texte en blanc */
+  margin-right: 10px;
+}
+
+/* Styler le texte "Hei Employee" en cas d'absence de nom d'entreprise */
+.footer-content span:empty {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff; /* Texte en blanc */
+}
+
+/* Styler le logo de l'entreprise */
+.footer-content img {
+  max-width: 80px;
+  max-height: 60px;
+  display: block; /* Centrer le logo */
+  margin: 0 auto; /* Centrer horizontalement */
+}
+
+/* Ajouter une marge supérieure au footer pour le décaler légèrement du formulaire */
+footer {
+  margin-top: 20px;
+}

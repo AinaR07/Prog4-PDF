@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Gestion d'employés</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a class="nav-link" href="/entreprise">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/employees">Employee</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add-employee">Add</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="card">
+        <h1 class="title">Gestion d'employés</h1>
+        <div class="options">
+            <a class="links" href="/add-employee">Ajouter employés</a>
+            <a class="links" href="/employees">Liste d'employés</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <!-- Incluez le fragment du footer ici -->
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>

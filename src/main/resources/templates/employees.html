@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des employés</title>
+    <link rel="stylesheet" type="text/css" href="/css/lists.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+</head>
+<body>
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="nav-item">
+        <a class="nav-link" href="/entreprise">A propos</a>
+    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/employees">Employés</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/add-employee">Ajouter</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Formulaire de recherche -->
+<form th:action="@{/employees}" method="get">
+    <div>
+        <label for="firstName">Prénom:</label>
+        <input type="text" id="firstName" name="firstName" th:value="${firstName}" />
+    </div>
+    <div>
+        <label for="lastName">Nom:</label>
+        <input type="text" id="lastName" name="lastName" th:value="${lastName}" />
+    </div>
+    <div>
+        <label for="sexe">Sexe:</label>
+        <select id="sexe" name="sexe">
+            <option value="">Tous</option>
+            <option value="M" th:selected="${sexe == 'M'}">Masculin</option>
+            <option value="F" th:selected="${sexe == 'F'}">Féminin</option>
+        </select>
+    </div>
+    <div>
+        <label for="fonction">Fonction:</label>
+        <input type="text" id="fonction" name="fonction" th:value="${fonction}" />
+    </div>
+    <div>
+        <button type="submit">Rechercher</button>
+        <a href="/employees">Réinitialiser</a>
+    </div>
+</form>
+
+<form th:action="@{/employees-code}" method="get">
+    <div>
+        <label for="countryCode">code pays de telephone :</label>
+        <input type="text" id="countryCode" name="countryCode" th:value="${countryCode}" />
+    </div>
+
+    <div>
+        <button type="submit">Rechercher</button>
+    </div>
+</form>
+
+<!-- Formulaire de recherche date -->
+<form th:action="@{/employees-date-filtered}" method="get">
+    <div>
+        <label for="dateEmbaucheStart">Date Embauche Start:</label>
+        <input type="date" id="dateEmbaucheStart" name="dateEmbaucheStart" th:value="${dateEmbaucheStart != null ? dateEmbaucheStart : ''}" />
+    </div>
+    <div>
+        <label for="dateEmbaucheEnd">Date Embauche End:</label>
+        <input type="date" id="dateEmbaucheEnd" name="dateEmbaucheEnd" th:value="${dateEmbaucheEnd != null ? dateEmbaucheEnd : ''}" />
+    </div>
+    <div>
+        <label for="dateDepartStart">Date Depart Start:</label>
+        <input type="date" id="dateDepartStart" name="dateDepartStart" th:value="${dateDepartStart != null ? dateDepartStart : ''}" />
+    </div>
+    <div>
+        <label for="dateDepartEnd">Date Depart End:</label>
+        <input type="date" id="dateDepartEnd" name="dateDepartEnd" th:value="${dateDepartEnd != null ? dateDepartEnd : ''}" />
+    </div>
+    <div>
+        <button type="submit">Rechercher</button>
+        <a href="/employees">Réinitialiser</a>
+    </div>
+</form>
+<h1>Liste des employés</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Prénom <br>
+            <a  class="custom-link" href="/employees-prenom-asc">c</a> |
+            <a  class="custom-link" href="/employees-prenom-desc">d</a>
+        </th>
+        <th>Nom <br>
+            <a  class="custom-link" href="/employees-nom-asc"> c </a> |
+            <a  class="custom-link" href="/employees-nom-desc">d</a>
+        </th>
+        <th>Date d'embauche <br>
+            <a  class="custom-link" href="/employees-date-embauche-asc">c</a> |
+            <a  class="custom-link" href="/employees-date-embauche-desc">d</a>
+        </th>
+        <th>Date de depart <br>
+            <a  class="custom-link" href="/employees-date-depart-asc">c</a> |
+            <a  class="custom-link" href="/employees-date-depart-desc">d</a>
+        </th>
+        <th>sexe <br>
+            <a  class="custom-link" href="/employees-sexe-asc">c</a> |
+            <a  class="custom-link" href="/employees-sexe-desc">d</a>
+        </th>
+        <th>Telephones
+        </th>
+        <th>Fonction <br>
+            <a  class="custom-link" href="/employees-fonction-asc">c</a> |
+            <a  class="custom-link" href="/employees-fonction-desc">d</a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td><a th:href="@{/fiche/{id}(id=${employee.id})}" th:text="${employee.firstName}"></a></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.dateEmbauche}"></td>
+        <td th:text="${employee.dateDepart}"></td>
+        <td th:text="${employee.sexe}"></td>
+        <td th:text="${employee.telephones}"></td>
+        <td th:text="${employee.fonction}"></td>
+    </tr>
+    </tbody>
+</table>
+<a class="custom-link" href="/employees/export">Export to CSV</a>
+
+<footer>
+    <!-- Incluez le fragment du footer ici -->
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
+</body>
+</html>

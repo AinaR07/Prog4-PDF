@@ -1,0 +1,103 @@
+body {
+  font-family: "Arial", sans-serif;
+}
+
+/* Improved table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Custom CSS for the horizontal form layout */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+form div {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+form label {
+  margin-right: 10px;
+}
+
+form input[type="text"],
+form select {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+form a {
+  margin-left: 10px;
+  color: #4CAF50;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Improved link styles */
+a.custom-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+a.custom-link:hover {
+  color: #0056b3;
+}
+
+a.custom-link:visited {
+  color: #800080;
+}
+
+a.custom-link:active {
+  color: #ff0000;
+}
+
+/* Improved footer styles */
+footer {
+  background-color: #f2f2f2;
+  padding: 15px; /* Augmente le padding */
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+

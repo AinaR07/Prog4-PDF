@@ -1,0 +1,121 @@
+/* Nouveau style CSS modifié */
+
+body {
+  font-family: "Arial", sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px; /* Réduit le padding */
+  text-align: center; /* Centré le texte */
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+form {
+  max-width: 500px; /* Augmente la largeur maximale */
+  margin: 0 auto;
+  padding: 30px; /* Augmente le padding */
+  border: 2px solid #ddd; /* Augmente l'épaisseur de la bordure */
+  border-radius: 8px; /* Augmente le rayon de la bordure */
+  background-color: #f7f7f7; /* Légèrement plus clair */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px; /* Augmente la marge inférieure */
+}
+
+form div {
+  margin-bottom: 15px; /* Augmente la marge inférieure */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px; /* Réduit la marge inférieure */
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px; /* Réduit le padding */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #007bff; /* Change la couleur du bouton */
+  color: white;
+  padding: 12px 24px; /* Ajuste le padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Ajoute une marge supérieure */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Couleur au survol */
+}
+
+.container {
+  max-width: 900px; /* Augmente la largeur maximale */
+  margin: 0 auto;
+  padding: 50px; /* Augmente le padding */
+}
+
+.card {
+  background-color: #fff; /* Fond blanc */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 30px; /* Augmente le padding */
+  text-align: center;
+  margin-top: 20px; /* Ajoute une marge supérieure */
+}
+
+.card .title {
+  font-weight: bold;
+  font-size: 28px; /* Augmente la taille de la police */
+  margin-bottom: 40px; /* Augmente la marge inférieure */
+}
+
+.card .options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card .links {
+  display: inline-block; /* Change en "inline-block" pour rester côte à côte */
+  margin: 10px 20px; /* Ajuste la marge */
+  padding: 12px 24px; /* Ajuste le padding */
+  text-decoration: none;
+  background-color: #007bff; /* Nouvelle couleur de fond */
+  color: white;
+  border-radius: 5px;
+}
+
+.card .links:last-child {
+  margin-right: 0; /* Ajuste la marge à droite du dernier lien */
+}
+
+.card .links:hover {
+  background-color: #0056b3; /* Couleur au survol */
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px; /* Ajoute une marge supérieure */
+}
+
+.form-container {
+  margin-bottom: 15vh; /* Ajuste la marge inférieure */
+}

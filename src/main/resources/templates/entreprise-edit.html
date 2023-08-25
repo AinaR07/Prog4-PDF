@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifier l'entreprise</title>
+    <link rel="stylesheet" type="text/css" href="/css/entreprise.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+</head>
+<body  th:object="${entreprise}">
+
+<div th:if="${error}" class="error-message">
+    <p th:text="${error}"></p>
+</div>
+
+
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="nav-item">
+            <a class="nav-link" href="/entreprise">A propos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/employees">Employés</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/add-employee">Ajouter</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container">
+    <h1>Modifier les informations de l'entreprise</h1>
+    <form th:action="@{/entreprise/edit}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="${entreprise.id}" /> <!-- Add a hidden field for the ID -->
+        <label>Nom: <input type="text" th:field="${entreprise.nom}" /></label><br>
+        <label>Description: <input type="text" th:field="${entreprise.description}" /></label><br>
+        <label>Slogan: <input type="text" th:field="${entreprise.slogan}" /></label><br>
+        <label>Adresse: <input type="text" th:field="${entreprise.adresse}" /></label><br>
+        <label>Email de contact: <input type="text" th:field="${entreprise.emailContact}" /></label><br>
+
+        <div id="existingTelephones">
+            <label>Téléphones existants:</label>
+            <ul>
+                <li th:each="telephone : ${entreprise.telephones}">
+                    <label>
+                        <input type="checkbox" name="telephonesToDelete" th:value="${telephone}">
+                        <span th:text="${telephone}"></span>
+                    </label>
+                </li>
+            </ul>
+            <p>Sélectionnez les numéros de téléphone que vous souhaitez supprimer:</p>
+        </div>
+        <div>
+            <label for="newTelephones">Nouveau téléphones:</label>
+            <select id="countryCode" name="countryCode">
+                <option value="+261">+261(Madagascar)</option>
+                <option value="+33">+33(france)</option>
+                <option value="+1">+1 (United States)</option>
+                <option value="+86">+86 (China)</option>
+                <option value="+91">+91 (India)</option>
+                <option value="+62">+62 (Indonesia)</option>
+                <option value="+81">+81 (Japan)</option>
+                <option value="+92">+92 (Pakistan)</option>
+                <option value="+234">+234 (Nigeria)</option>
+                <option value="+880">+880 (Bangladesh)</option>
+                <option value="+55">+55 (Brazil)</option>
+                <option value="+7">+7 (Russia)</option>
+                <option value="+49">+49 (Germany)</option>
+                <option value="+44">+44 (United Kingdom)</option>
+                <option value="+82">+82 (South Korea)</option>
+                <option value="+20">+20 (Egypt)</option>
+            </select>
+           <span><input id="newTelephones" name="newTelephones" placeholder="(10 chiffres)"></input></span>
+        </div>
+
+
+        <label>NIF: <input type="text" th:field="${entreprise.nif}"  /></label><br>
+        <label>Stat: <input type="text" th:field="${entreprise.stat}" /></label><br>
+        <label>RCS: <input type="text" th:field="${entreprise.rcs}"  /></label><br>
+        <div>
+            <label for="logoFile">Logo:</label>
+            <input type="file" id="logoFile" name="logoFile">
+        </div>>
+
+
+
+        <!-- Add other fields of the Entreprise class here -->
+
+        <input type="submit" value="Enregistrer" />
+    </form>
+</div>
+</body>
+</html>
