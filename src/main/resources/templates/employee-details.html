@@ -60,6 +60,12 @@
             <p>Image vide</p>
         </div>
     </div>
+        <!-- Ajoutez le formulaire pour générer le PDF -->
+        <form th:action="@{/generate-pdf/${employee.id}}" method="get">
+
+            <a th:href="@{/generate-pdf/{id}(id=${employee.id})}">Transformer en PDF</a>
+
+        </form>
 </div>
 </div>
 

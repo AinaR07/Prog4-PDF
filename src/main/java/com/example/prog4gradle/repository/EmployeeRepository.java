@@ -1,12 +1,9 @@
 package com.example.prog4gradle.repository;
 
 import com.example.prog4gradle.model.Employee;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -32,6 +29,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "JOIN telephones t ON et.telephone_id = t.id " +
             "WHERE t.country_code = :countryCode", nativeQuery = true)
     List<Employee> findAllByCountryCode(@Param("countryCode") String countryCode);
+
 
 
     List<Employee> findByDateEmbaucheBetween(LocalDate startDate, LocalDate endDate);

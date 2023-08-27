@@ -3,7 +3,7 @@
     <!-- Afficher le nom de l'entreprise s'il existe -->
     <span th:if="${entreprise != null}" th:text="${entreprise.nom}">Entreprise Name Not Found</span>
     <!-- Afficher le texte "Hei Employee" s'il n'y a pas d'entreprise ou si le nom est vide -->
-    <span th:if="${entreprise == null or entreprise.nom == null or entreprise.nom == ''}">Hei Employee</span>
+    <span th:if="${entreprise == null or entreprise.nom == null or entreprise.nom == ''}">HEI</span>
 
     <!-- Afficher le logo de l'entreprise s'il existe -->
     <div th:if="${entreprise != null and entreprise.logo != null}">

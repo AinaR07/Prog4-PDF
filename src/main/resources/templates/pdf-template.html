@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+.all {
+    width: 210mm; /* Largeur du format A4 */
+    height: 297mm; /* Hauteur du format A4 */
+    margin: auto; /* Centre le contenu horizontalement */
+    padding: 10mm; /* Espace autour du contenu */
+    box-sizing: border-box; /* Inclut la marge dans la taille totale */
+    justify-content: center;
+    align-items: center;
+}
+/* Styles pour la mise en page */
+.employee-details {
+    display: flex;
+    align-items: center;
+}
+
+.employee-image {
+    flex: 1;
+    text-align: center;
+}
+
+.employee-image img {
+    max-width: 50%; /* Taille carrée et assez petite */
+    height: auto;
+}
+
+.employee-info {
+    flex: 2;
+    padding: 20px; /* Espace au milieu */
+}
+
+/* Styles pour le salaire */
+.employee-salary {
+           margin-left: 25% ;
+        }
+
+
+/* Autres styles */
+.employee-details p {
+    margin: 5px 0;
+}
+
+      /* Styles pour la mise en page */
+.company-details {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #000; /* Barre au-dessus des infos */
+}
+
+.company-logo {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    max-width: 50px; /* Taille du logo petit */
+}
+
+.company-info {
+    flex: 3;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.info-column {
+    flex: 1;
+}
+
+/* Styles pour les lignes de texte */
+.company-info p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+/* Styles pour la liste des numéros de téléphone */
+.company-phones {
+    list-style-type: none;
+    padding: 0;
+}
+
+.company-phones li {
+    padding: 5px 0;
+}
+
+    </style>
+</head>
+<body>
+<div class="all">
+    <div class="employee-details">
+        <div class="employee-image">
+            <div th:if="${employee != null && employee.image != null}">
+                <img src="data:image/jpeg;base64," th:attrappend="src=${employee.image}" alt="Photo de l'employé" />
+            </div>
+            <div th:unless="${employee != null && employee.image != null}">
+                <p>Image vide</p>
+            </div>
+        </div>
+        <div class="employee-info">
+            <h2>FICHE EMPLOYE : </h2>
+            <p>Numéro de matricule: <span th:text="${employee.numeroMatricule}"></span></p>
+            <p>Nom: <span th:text="${employee.lastName}"></span></p>
+            <p>Prénom: <span th:text="${employee.firstName}"></span></p>
+            <p>Âge: <span th:text="${employee.age}"></span></p>
+            <p>Date d'embauche: <span th:text="${employee.dateEmbauche}"></span></p>
+            <p>Date de départ: <span th:text="${employee.dateDepart}"></span></p>
+            <p>Numéro CNAPS: <span th:text="${employee.CNAPS}"></span></p>
+        </div>
+    </div>
+    <div class="employee-salary">
+        <h4> Information sur le salaire</h4>
+        <p>  <span>Salaire brut actuel: </span> <span th:text="${employee.salaireBrut}"> </span> <span> Ariary/mois</span> </p>
+    </div>
+
+    <div class="company-details company-details-bottom">
+        <div class="company-logo">
+            <div th:if="${entreprise != null && entreprise.logo != null}">
+                <img class="logo" src="data:image/jpeg;base64," th:attrappend="src=${entreprise.logo}" alt="Logo de l'entreprise" />
+            </div>
+            <div th:unless="${entreprise != null &&entreprise.logo != null}">
+                <p>Logo vide</p>
+            </div>
+        </div>
+        <div class="company-info">
+            <div class="info-column">
+                <p>Nom de l'entreprise: <span th:text="${entreprise.nom}"></span></p>
+                <p>NIF: <span th:text="${entreprise.nif}"></span></p>
+                <p>STAT: <span th:text="${entreprise.stat}"></span></p>
+            </div>
+            <div class="info-column">
+                <p>Adresse de l'entreprise: <span th:text="${entreprise.adresse}"></span></p>
+                <p>Numero:
+                <ul class="company-phones">
+                    <li th:each="telephone : ${entreprise.telephones}" th:text="${telephone}"></li>
+                </ul>
+                </p>
+                <p>Email: <span th:text="${entreprise.emailContact}"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

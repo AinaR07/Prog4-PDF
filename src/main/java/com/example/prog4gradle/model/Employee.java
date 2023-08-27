@@ -2,9 +2,7 @@ package com.example.prog4gradle.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -13,7 +11,6 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode
 @Entity
-@ToString
 @Table(name = "employee")
 public class Employee {
     @Id
@@ -75,6 +72,11 @@ public class Employee {
     @Column(name = "date_depart")
     private LocalDate dateDepart;
 
+    @Column(name = "salaire_brut")
+    private long salaireBrut;
+
+    private int age;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "categorie_socio_professionnelle")
     private CategorieSocioProfessionnelle categorieSocioProfessionnelle;
@@ -92,30 +94,30 @@ public class Employee {
     }
 
     // Employee class
-//    @Override
-//    public String toString() {
-//        return "Employee{" +
-//                "id=" + id +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", dateOfBirth=" + dateOfBirth +
-//                ", sexe=" + sexe +
-//                ", numeroMatricule='" + numeroMatricule + '\'' +
-//                ", telephones=" + (telephones != null ? telephones.toString() : "null") +
-//                ", adresse='" + adresse + '\'' +
-//                ", emailPersonnel='" + emailPersonnel + '\'' +
-//                ", emailProfessionnel='" + emailProfessionnel + '\'' +
-//                ", numeroCIN='" + numeroCIN + '\'' +
-//                ", dateDelivranceCIN=" + dateDelivranceCIN +
-//                ", lieuDelivranceCIN='" + lieuDelivranceCIN + '\'' +
-//                ", fonction='" + fonction + '\'' +
-//                ", nombreEnfants=" + nombreEnfants +
-//                ", dateEmbauche=" + dateEmbauche +
-//                ", dateDepart=" + dateDepart +
-//                ", categorieSocioProfessionnelle=" + categorieSocioProfessionnelle +
-//                ", CNAPS='" + CNAPS + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", sexe=" + sexe +
+                ", numeroMatricule='" + numeroMatricule + '\'' +
+                ", telephones=" + (telephones != null ? telephones.toString() : "null") +
+                ", adresse='" + adresse + '\'' +
+                ", emailPersonnel='" + emailPersonnel + '\'' +
+                ", emailProfessionnel='" + emailProfessionnel + '\'' +
+                ", numeroCIN='" + numeroCIN + '\'' +
+                ", dateDelivranceCIN=" + dateDelivranceCIN +
+                ", lieuDelivranceCIN='" + lieuDelivranceCIN + '\'' +
+                ", fonction='" + fonction + '\'' +
+                ", nombreEnfants=" + nombreEnfants +
+                ", dateEmbauche=" + dateEmbauche +
+                ", dateDepart=" + dateDepart +
+                ", categorieSocioProfessionnelle=" + categorieSocioProfessionnelle +
+                ", CNAPS='" + CNAPS + '\'' +
+                '}';
+    }
 
 
 }

@@ -3,7 +3,6 @@ package com.example.prog4gradle.model;
 import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,5 +34,7 @@ EmployeeModel {
     private LocalDate dateDepart;
     private Employee.CategorieSocioProfessionnelle categorieSocioProfessionnelle;
     private String CNAPS;
+    private int age;
+    private long salaireBrut;
 
 }

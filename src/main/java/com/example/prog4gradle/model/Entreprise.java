@@ -10,7 +10,6 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode
-@ToString
 @Entity
 @Table(name = "entreprise")
 public class Entreprise {
@@ -41,6 +40,21 @@ public class Entreprise {
     @Column(columnDefinition="text")
     private String logo;
 
-
+    @Override
+    public String toString() {
+        return "Entreprise{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", description='" + description + '\'' +
+                ", slogan='" + slogan + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", emailContact='" + emailContact + '\'' +
+                ", telephones=" + (telephones != null ? telephones.toString() : "null") +
+                ", nif='" + nif + '\'' +
+                ", stat='" + stat + '\'' +
+                ", rcs='" + rcs + '\'' +
+                ", logo='" + logo + '\'' +
+                '}';
+    }
 
 }

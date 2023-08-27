@@ -11,14 +11,11 @@ import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-
-
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -168,6 +165,7 @@ public class EmployeeService {
         employee.setDateDepart(employeeModel.getDateDepart());
         employee.setCategorieSocioProfessionnelle(employeeModel.getCategorieSocioProfessionnelle());
         employee.setCNAPS(employeeModel.getCNAPS());
+        employee.setSalaireBrut(employeeModel.getSalaireBrut());
 
         if (employeeModel.getImageFile() != null && !employeeModel.getImageFile().isEmpty()) {
             try {
@@ -208,10 +206,43 @@ public class EmployeeService {
                     employeeNew.getTelephones().add(newTelephone);
                 }
             }
-             employeeRepository.save(employeeNew);
+
+            // Calculer l'âge à partir de la date de naissance
+            LocalDate dateOfBirth = employeeModel.getDateOfBirth();
+            int age = calculateAge(dateOfBirth);
+            employeeModel.setAge(age);
+
+            employeeNew.setAge(age);
+            employeeRepository.save(employeeNew);
         }
         return optionalEmployee.get();
     }
+
+
+    private int calculateAge(LocalDate dateOfBirth) {
+        if (dateOfBirth == null) {
+            throw new IllegalArgumentException("La date de naissance ne peut pas être nulle.");
+        }
+
+        LocalDate currentDate = LocalDate.now();
+        Period period = Period.between(dateOfBirth, currentDate);
+        int age = period.getYears();
+
+        if (age < 18) {
+            throw new IllegalArgumentException("L'âge doit être d'au moins 18 ans.");
+        }
+
+        if (age > 60) {
+            throw new IllegalArgumentException("L'âge ne peut pas dépasser 60 ans.");
+        }
+
+        if (dateOfBirth.isAfter(currentDate)) {
+            throw new IllegalArgumentException("La date de naissance ne peut pas être postérieure à la date actuelle.");
+        }
+
+        return age;
+    }
+
 
 
     private boolean isValidPhoneNumber(String phoneNumber) {
@@ -229,6 +260,7 @@ public class EmployeeService {
             employee.setFirstName(employeeModel.getFirstName());
             employee.setLastName(employeeModel.getLastName());
             employee.setNumeroMatricule(employeeModel.getNumeroMatricule());
+            employee.setSalaireBrut(employeeModel.getSalaireBrut());
 
             //sexe
             Employee.Sexe newSexe = employeeModel.getSexe();
@@ -305,6 +337,12 @@ public class EmployeeService {
                 }
             }
 
+            // Calculer l'âge à partir de la date de naissance
+            LocalDate dateOfBirth = employeeModel.getDateOfBirth();
+            int age = calculateAge(dateOfBirth);
+            employeeModel.setAge(age);
+
+            employee.setAge(age);
             return employeeRepository.save(employee);
         } else {
             throw new NoSuchElementException("Employee not found for ID: " + id);

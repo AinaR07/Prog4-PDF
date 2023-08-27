@@ -1,15 +1,13 @@
 package com.example.prog4gradle.controller;
+
 import com.example.prog4gradle.model.Employee;
 import com.example.prog4gradle.model.EmployeeModel;
 import com.example.prog4gradle.model.Entreprise;
 import com.example.prog4gradle.service.EmployeeService;
+import com.example.prog4gradle.service.EntrepriseService;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeController {
     private final EmployeeService employeeService;
-
+    private EntrepriseService entrepriseService;
 
 
     @GetMapping("/employees-nom-asc")
@@ -378,6 +376,17 @@ public class EmployeeController {
         Employee employee = employeeService.getEmployee(id);
         model.addAttribute("employee", employee);
         return "employee-details";
+    }
+
+    @GetMapping("/fiche/{id}/fiche")
+    public String getEmployeeFiche(@PathVariable int id, Model model) {
+        Employee employee = employeeService.getEmployee(id);
+        Entreprise entreprise = entrepriseService.getEntreprise(1); // Vous devrez obtenir l'entreprise correcte en fonction de votre logique
+
+        model.addAttribute("employee", employee);
+        model.addAttribute("entreprise", entreprise);
+
+        return "fiche-details";
     }
 
 
